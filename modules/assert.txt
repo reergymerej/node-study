@@ -1,0 +1,4 @@
+used for writing unit tests
+================================================
+
+fail - throws an error

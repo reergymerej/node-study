@@ -1,0 +1,47 @@
+Notes
+================================================
+
+used for dealing with octet streams (binary files)
+
+Buffer is similar to an array of integers
+
+Buffer cannot be resized
+
+Buffer is global, so you don't need to require it
+
+converting Buffer to JS string requires explicit encoding
+
+
+Constructor
+================================================
+
+Buffer can be constructed 3 ways
+    * specify number of octets in the Buffer
+    * specify the array of octets
+    * specify a string to be encoded into octets
+
+
+Class Methods
+================================================
+
+Buffer.isEncoding(encoding) - Test if "encoding" is a valid string to be used for encoding.
+
+Buffer.isBuffer(obj) - Test if "obj" is a Buffer.
+
+Buffer.bytLength(string, [encoding]) - gets byte length of string (not the same as # of characters in a string)
+
+
+Methods
+================================================
+
+write(string, [offset], [length], [encoding]) - writes "string" into the buffer (or at least what will fit)
+
+toString([encoding], [start], [end]) - gets string from octets
+
+toJSON() - returns a JSON object of the buffer; has data array
+
+
+Accesors
+================================================
+
+[index] - get/set the octet at "index"
