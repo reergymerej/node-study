@@ -30,6 +30,9 @@ Buffer.isBuffer(obj) - Test if "obj" is a Buffer.
 
 Buffer.bytLength(string, [encoding]) - gets byte length of string (not the same as # of characters in a string)
 
+Buffer.concat(list, [totalLength]) - concatenates an array of buffers
+
+
 
 Methods
 ================================================
@@ -40,8 +43,48 @@ toString([encoding], [start], [end]) - gets string from octets
 
 toJSON() - returns a JSON object of the buffer; has data array
 
+copy(targetBuffer, [targetStart], [sourceStart], [sourceEnd]) - copy octets from one buffer into another
+
+slice([start], [end]) - get a new buffer referencing a subset of this buffer's memory
+
+readUInt8(offset, [noAssert])
+readUInt16LE(offset, [noAssert])
+readUInt16BE(offset, [noAssert])
+readUInt32LE(offset, [noAssert])
+readUInt32BE(offset, [noAssert])
+readInt8(offset, [noAssert])
+readInt16LE(offset, [noAssert])
+readInt16BE(offset, [noAssert])
+readInt32LE(offset, [noAssert])
+readInt32BE(offset, [noAssert])
+readFloatLE(offset, [noAssert])
+readFloatBE(offset, [noAssert])
+readDoubleLE(offset, [noAssert])
+readDoubleBE(offset, [noAssert])
+
+writeUInt8(value, offset, [noAssert])
+writeUInt16LE(value, offset, [noAssert])
+writeUInt16BE(value, offset, [noAssert])
+writeUInt32LE(value, offset, [noAssert])
+writeUInt32BE(value, offset, [noAssert])
+writeInt8(value, offset, [noAssert])
+writeInt16LE(value, offset, [noAssert])
+writeInt16BE(value, offset, [noAssert])
+writeInt32LE(value, offset, [noAssert])
+writeInt32BE(value, offset, [noAssert])
+writeFloatLE(value, offset, [noAssert])
+writeFloatBE(value, offset, [noAssert])
+writeDoubleLE(value, offset, [noAssert])
+writeDoubleBE(value, offset, [noAssert])
+
 
 Accesors
 ================================================
 
 [index] - get/set the octet at "index"
+
+
+Properties
+================================================
+
+length - # of bytes allotted for buffer
