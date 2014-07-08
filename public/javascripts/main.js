@@ -38,27 +38,65 @@ $(function () {
         $('#wrong').html(wrong);
     };
 
+    var getMeth = function () {
+      var err;
+      var method;
+
+      do {
+        try {
+          method = getRandomMethod();
+          err = null;
+        } catch (e) {
+          err = e;
+        }
+      } while (err);
+
+      return method;
+    };
+
+    var randSortArray = function (arr) {
+      var newArr = [],
+        num;
+
+      while (arr.length) {
+        num = rand(0, arr.length - 1);
+        newArr.push(arr.splice(num, 1)[0]);
+      }
+
+      while (arr.length < newArr.length) {
+        arr.splice(arr.length - 1, 0, newArr[arr.length]);
+      }
+    };
+
     var next = function () {
         if (json) {
-            var err;
-            var method;
+              
+            var m1 = getMeth();
+            var methods = [];
 
-            do {
-              try {
-                method = getRandomMethod();
-                err = null;
-              } catch (e) {
-                err = e;
-              }
-            } while (err);
+            answer = m1.name;
 
-            answer = method.name;
+            var i = 0;
+            for (i = 0; i < 4; i++) {
+              methods.push(getMeth());
+            }
+
+            randSortArray(methods);
+
+            var hints = '';
+            methods.forEach(function (method) {
+              hints += method.name;
+            });
+            $('#hints').html(hints);
+
+
             
+
             $('input[name="name"]').val('');
             $('#textRaw, #name').hide();
-            $('#name').html(method.name);
-            $('#textRaw').html(method.textRaw);
-            $('#desc').html(method.desc);
+            $('#name').html(m1.name);
+            $('#textRaw').html(m1.textRaw);
+            $('#desc').html(m1.desc);
             $('pre', '#desc').html('not shown');
 
             showTally();
