@@ -12,6 +12,14 @@ Buffer is global, so you don't need to require it
 converting Buffer to JS string requires explicit encoding
 
 
+Classes
+================================================
+
+Buffer
+
+SlowBuffer
+
+
 Constructor
 ================================================
 
@@ -61,7 +69,6 @@ readFloatLE(offset, [noAssert])
 readFloatBE(offset, [noAssert])
 readDoubleLE(offset, [noAssert])
 readDoubleBE(offset, [noAssert])
-
 writeUInt8(value, offset, [noAssert])
 writeUInt16LE(value, offset, [noAssert])
 writeUInt16BE(value, offset, [noAssert])
@@ -77,6 +84,8 @@ writeFloatBE(value, offset, [noAssert])
 writeDoubleLE(value, offset, [noAssert])
 writeDoubleBE(value, offset, [noAssert])
 
+fill(value, [offset], [end]) - fill buffer with value
+
 
 Accesors
 ================================================
@@ -88,3 +97,5 @@ Properties
 ================================================
 
 length - # of bytes allotted for buffer
+
+INSPECT_MAX_BYTES - bytes returned when .inspect() is called
