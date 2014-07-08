@@ -6,3 +6,20 @@ body {
 a {
   color: #00B7FF;
 }
+
+#name, #textRaw {
+    display: none;
+}
+
+#tally {
+    font-size: 2em;
+    font-weight: bold;;
+}
+
+#right {
+    color: green;
+}
+
+#wrong {
+    color: red;
+}

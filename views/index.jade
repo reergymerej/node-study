@@ -1,8 +1,17 @@
 extends layout
 
 block content
-    div#question
+    div#tally
+        span#right
+        span#wrong
+
+    form#question
         div#name
-        div#textRaw
+        h3 description
         div#desc
-    button next
+        h3 raw
+        div#textRaw
+        h3 name
+        input(name="name")
+        a(id="show", href="#") show answer
+        button(type="submit") next

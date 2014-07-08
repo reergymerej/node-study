@@ -1,6 +1,4 @@
 $(function () {
-    console.log('yo');
-
     var json;
 
     var rand = function (min, max) {
@@ -30,12 +28,17 @@ $(function () {
       };
     };
 
+    var right = 0,
+      wrong = 0;
 
-    $.getJSON('http://nodejs.org/api/buffer.json', function (data) {
-        json = data;
-    });
+    var answer;
 
-    $('button').on('click', function () {
+    var showTally = function () {
+        $('#right').html(right);
+        $('#wrong').html(wrong);
+    };
+
+    var next = function () {
         if (json) {
             var err;
             var method;
@@ -48,10 +51,43 @@ $(function () {
                 err = e;
               }
             } while (err);
+
+            answer = method.name;
             
+            $('input[name="name"]').val('');
+            $('#textRaw, #name').hide();
             $('#name').html(method.name);
             $('#textRaw').html(method.textRaw);
             $('#desc').html(method.desc);
+            $('pre', '#desc').html('not shown');
+
+            showTally();
         }
+    };
+
+    $.getJSON('http://nodejs.org/api/buffer.json', function (data) {
+        json = data;
+        next();
+    });
+
+    $('#show').on('click', function () {
+      $('#textRaw, #name').show();
+      return false;
+    });
+
+    $('form').on('submit', function () {
+
+        var name = $('input[name="name"]').val();
+        
+        if (name === answer) {
+            right ++;
+            next();
+        } else {
+            wrong ++;
+            $('#show').click();
+            setTimeout(next, 2000);
+        }
+
+        return false;
     });
 });
