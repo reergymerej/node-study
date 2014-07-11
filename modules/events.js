@@ -2,20 +2,13 @@
 
 var events = require('events');
 var emitter = new events.EventEmitter();
+var listener = function iAmACoolListener () {};
+var listener2 = function iAmALameListener () {};
 
-emitter.addListener('foo', function () {
-    console.log('foo happened');
-})
-.on('bar', function () {
-    console.log('bar happened');
-})
-.once('baz', function () {
-    console.log('baz happened');
-});
+emitter.on('foo', listener);
+emitter.on('foo', listener2);
+emitter.on('bar', listener2);
 
-emitter.emit('foo');
-emitter.emit('foo');
-emitter.emit('bar');
-emitter.emit('bar');
-emitter.emit('baz');
-emitter.emit('baz');
+console.log(emitter.listeners('foo'));
+console.log(emitter.listeners('bar'));
+console.log(emitter.listeners('baz'));
