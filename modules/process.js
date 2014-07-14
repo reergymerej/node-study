@@ -7,8 +7,4 @@
 //   console.log(key);
 // });
 
-process.stdin.resume();
-
-process.on('SIGINT', function () {
-    console.log('got SIGINT');
-});
+console.log(process.argv);
