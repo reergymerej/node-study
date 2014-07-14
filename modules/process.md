@@ -61,19 +61,17 @@ It's worth noting that "--harmony" is a switch to turn on the [ECMAScript 6 opti
 
 <dl>
     <dt>pid</dt>
-    <dd></dd>
+    <dd>the [process id](http://en.wikipedia.org/wiki/Process_identifier) of Node currently executing</dd>
 </dl>
-    code here
 
 <dl>
     <dt>platform</dt>
-    <dd></dd>
+    <dd>the platform - linux, win32, etc.</dd>
 </dl>
-    code here
 
 <dl>
     <dt>stderr</dt>
-    <dd></dd>
+    <dd>TODO: Need to explain Streams first.  http://nodejs.org/api/stream.html</dd>
 </dl>
     code here
 
