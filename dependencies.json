@@ -1,0 +1,71 @@
+{
+    "modules": [
+        {
+            "name": "assert",
+            "prerequisites": []
+        },
+
+        {
+            "name": "buffer",
+            "prerequisites": [
+                "console"
+            ]
+        },
+
+        {
+            "name": "child_process",
+            "prerequisites": [
+                "console",
+                "process",
+                "events",
+                "net",
+                "stream",
+                "buffer"
+            ]
+        },
+
+        {
+            "name": "stream",
+            "prerequisites": [
+                "console",
+                "events"
+            ]
+        },
+
+        {
+            "name": "process",
+            "prerequisites": [
+                "events",
+                "stream",
+                "domain",
+                "tty",
+                "console",
+                "util",
+                "fs"
+            ]
+        },
+
+        {
+            "name": "console",
+            "prerequisites": [
+                "util",
+                "assert"
+            ]
+        },
+
+        {
+            "name": "events",
+            "prerequisites": [
+                "console",
+                "util"
+            ]
+        },
+
+        {
+            "name": "util",
+            "prerequisites": [
+                "console"
+            ]
+        }
+    ]
+}
