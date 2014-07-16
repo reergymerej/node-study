@@ -240,6 +240,18 @@
                 "console",
                 "module"
             ]
+        },
+
+        {
+            "name": "readline",
+            "prerequisites": [
+                "console",
+                "events",
+                "module",
+                "process",
+                "stream",
+                "tty"
+            ]
         }
     ]
 }

@@ -3,7 +3,6 @@ Cluster
 Crypto
 DNS
 Punycode
-Readline
 UDP/Datagram
 VM
 
@@ -26,6 +25,7 @@ os
 path
 process
 querystring
+readline
 repl
 stream
 stringdecoder
