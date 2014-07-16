@@ -15,12 +15,12 @@
         {
             "name": "child_process",
             "prerequisites": [
+                "buffer",
                 "console",
-                "process",
                 "events",
                 "net",
-                "stream",
-                "buffer"
+                "process",
+                "stream"
             ]
         },
 
@@ -35,13 +35,13 @@
         {
             "name": "process",
             "prerequisites": [
-                "events",
-                "stream",
-                "domain",
-                "tty",
                 "console",
-                "util",
-                "fs"
+                "domain",
+                "events",
+                "fs",
+                "stream",
+                "tty",
+                "util"
             ]
         },
 
@@ -149,6 +149,43 @@
                 "util",
                 "stream",
                 "events"
+            ]
+        },
+
+        {
+            "name": "net",
+            "prerequisites": [
+                "child_process",
+                "console",
+                "events",
+                "module",
+                "stream"
+            ]
+        },
+
+        {
+            "name": "domain",
+            "prerequisites": [
+                "console",
+                "events",
+                "fs",
+                "http",
+                "module",
+                "process",
+                "timers"
+            ]
+        },
+
+        {
+            "name": "http",
+            "prerequisites": [
+                "console",
+                "buffer",
+                "events",
+                "module",
+                "net",
+                "stream",
+                "url"
             ]
         }
     ]
