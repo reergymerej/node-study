@@ -7,6 +7,7 @@ VM
 
 ================================================
 
+addons
 assert
 buffer
 child_process

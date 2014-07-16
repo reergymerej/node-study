@@ -257,7 +257,16 @@
         {
             "name": "dgram",
             "prerequisites": [
+                "buffer",
                 "events",
+                "module"
+            ]
+        },
+
+        {
+            "name": "addons",
+            "prerequisites": [
+                "console",
                 "module"
             ]
         }
