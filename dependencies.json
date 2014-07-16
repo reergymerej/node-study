@@ -66,6 +66,50 @@
             "prerequisites": [
                 "console"
             ]
-        }
+        },
+
+        {
+            "name": "debugger",
+            "prerequisites": [
+                "console"
+            ]
+        },
+
+        {
+            "name": "repl",
+            "prerequisites": [
+                "process",
+                "util",
+                "net",
+                "events",
+                "module"
+            ]
+        },
+
+        {
+            "name": "global",
+            "prerequisites": [
+                "process",
+                "console",
+                "buffer",
+                "module",
+                "timers"
+            ]
+        },
+
+        {
+            "name": "timers",
+            "prerequisites": [
+                "module",
+                "process"
+            ]
+        },
+
+        {
+            "name": "module",
+            "prerequisites": [
+                "console"
+            ]
+        }        
     ]
 }
