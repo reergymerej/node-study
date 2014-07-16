@@ -209,6 +209,16 @@
                 "process",
                 "stream"
             ]
+        },
+
+        {
+            "name": "tty",
+            "prerequisites": [
+                "events",
+                "net",
+                "process",
+                "stream"
+            ]
         }
     ]
 }

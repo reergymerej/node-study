@@ -7,7 +7,6 @@ Punycode
 Query Strings
 Readline
 String Decoder
-TTY
 UDP/Datagram
 VM
 
@@ -32,9 +31,8 @@ repl
 stream
 timers
 tls_(ssl)
+tty
 url
 util
 zlib
 
-
-tty
