@@ -4,10 +4,8 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    include header
 
-    pre
-        
+    include index.html
 
-    script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
-    script(src="/javascripts/main.js")
+    include footer
