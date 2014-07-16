@@ -187,6 +187,15 @@
                 "stream",
                 "url"
             ]
+        },
+
+        {
+            "name": "https",
+            "prerequisites": [
+                "fs",
+                "http",
+                "tls_(ssl)"
+            ]
         }
     ]
 }

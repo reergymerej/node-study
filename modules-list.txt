@@ -2,8 +2,6 @@ C/C++ Addons
 Cluster
 Crypto
 DNS
-HTTP
-HTTPS
 OS
 Punycode
 Query Strings
@@ -26,6 +24,7 @@ events
 fs
 global
 http
+https
 module
 net
 path
@@ -38,5 +37,5 @@ util
 zlib
 
 
-
+tls_(ssl)
 tty
