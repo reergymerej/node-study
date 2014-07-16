@@ -231,6 +231,15 @@
         {
             "name": "querystring",
             "prerequisites": []
+        },
+
+        {
+            "name": "stringdecoder",
+            "prerequisites": [
+                "buffer",
+                "console",
+                "module"
+            ]
         }
     ]
 }

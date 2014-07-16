@@ -4,7 +4,6 @@ Crypto
 DNS
 Punycode
 Readline
-String Decoder
 UDP/Datagram
 VM
 
@@ -29,6 +28,7 @@ process
 querystring
 repl
 stream
+stringdecoder
 timers
 tls_(ssl)
 tty
