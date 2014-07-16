@@ -306,6 +306,22 @@
                 "module",
                 "net"
             ]
+        },
+
+        {
+            "name": "punycode",
+            "prerequisites": [
+                "module"
+            ]
+        },
+
+        {
+            "name": "vm",
+            "prerequisites": [
+                "module",
+                "console",
+                "util"
+            ]
         }
     ]
 }
