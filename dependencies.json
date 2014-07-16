@@ -269,6 +269,20 @@
                 "console",
                 "module"
             ]
+        },
+
+        {
+            "name": "cluster",
+            "prerequisites": [
+                "child_process",
+                "console",
+                "events",
+                "http",
+                "module",
+                "net",
+                "os",
+                "process"
+            ]
         }
     ]
 }

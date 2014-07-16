@@ -1,5 +1,3 @@
-C/C++ Addons
-Cluster
 Crypto
 DNS
 Punycode
@@ -11,6 +9,7 @@ addons
 assert
 buffer
 child_process
+cluster
 console
 debugger
 dgram
