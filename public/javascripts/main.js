@@ -150,6 +150,8 @@ $(function () {
 
     var ul = $('#modules');
     var prereqDif = $('#prereqs');
+    var iframe = $('iframe');
+    var module;
 
     $.each(modules, function (module) {
         var li = $('<li>' + module + '</li>');
@@ -158,9 +160,13 @@ $(function () {
         ul.append(li);
     });
 
+    ul.delegate('li', 'click', function () {
+      var prereqs = modules[module];
+      prereqDif.html(prereqs.join(', '));
+      iframe.attr('src', 'http://nodejs.org/api/' + module + '.html');
+    });
+
     ul.delegate('li', 'mouseover', function () {
-        var module = $(this).data('module');
-        var prereqs = modules[module];
-        prereqDif.html(prereqs.join(', '));
+        module = $(this).data('module');
     });
 });
