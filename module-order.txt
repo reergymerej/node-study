@@ -1,0 +1,40 @@
+module
+console
+assert  
+querystring 
+
+os  module
+url module
+path    module
+dns console
+debugger    console
+util    console,module
+punycode    console,module
+buffer  console,module
+addons  console,module
+
+events  util
+
+stream  events
+timers  module
+stringdecoder   buffer
+dgram   buffer,events
+vm  util
+
+process stream
+fs  process
+child_process   process
+global  process,timers
+net child_process
+
+repl    net
+tty net
+tls_(ssl)   fs,net
+readline    tty
+crypto  fs
+
+http    net,url
+https   fs,http,tls_(ssl)
+cluster http,os
+domain  fs,http,timers
+zlib    fs,http
