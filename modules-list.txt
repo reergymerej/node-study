@@ -3,7 +3,6 @@ Cluster
 Crypto
 DNS
 Punycode
-UDP/Datagram
 VM
 
 ================================================
@@ -13,6 +12,7 @@ buffer
 child_process
 console
 debugger
+dgram
 domain
 events
 fs

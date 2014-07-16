@@ -252,6 +252,14 @@
                 "stream",
                 "tty"
             ]
+        },
+
+        {
+            "name": "dgram",
+            "prerequisites": [
+                "events",
+                "module"
+            ]
         }
     ]
 }
