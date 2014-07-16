@@ -219,6 +219,18 @@
                 "process",
                 "stream"
             ]
+        },
+
+        {
+            "name": "os",
+            "prerequisites": [
+                "module"
+            ]
+        },
+
+        {
+            "name": "querystring",
+            "prerequisites": []
         }
     ]
 }

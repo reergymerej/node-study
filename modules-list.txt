@@ -2,9 +2,7 @@ C/C++ Addons
 Cluster
 Crypto
 DNS
-OS
 Punycode
-Query Strings
 Readline
 String Decoder
 UDP/Datagram
@@ -25,8 +23,10 @@ http
 https
 module
 net
+os
 path
 process
+querystring
 repl
 stream
 timers
@@ -35,4 +35,3 @@ tty
 url
 util
 zlib
-
