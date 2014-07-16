@@ -283,6 +283,19 @@
                 "os",
                 "process"
             ]
+        },
+
+        {
+            "name": "crypto",
+            "prerequisites": [
+                "buffer",
+                "console",
+                "events",
+                "fs",
+                "module",
+                "process",
+                "stream"
+            ]
         }
     ]
 }
