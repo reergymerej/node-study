@@ -196,6 +196,19 @@
                 "http",
                 "tls_(ssl)"
             ]
+        },
+
+        {
+            "name": "tls_(ssl)",
+            "prerequisites": [
+                "console",
+                "events",
+                "fs",
+                "module",
+                "net",
+                "process",
+                "stream"
+            ]
         }
     ]
 }
