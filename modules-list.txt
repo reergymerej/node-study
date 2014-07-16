@@ -1,4 +1,3 @@
-DNS
 Punycode
 VM
 
@@ -13,6 +12,7 @@ console
 crypto
 debugger
 dgram
+dns
 domain
 events
 fs

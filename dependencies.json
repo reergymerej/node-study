@@ -296,6 +296,16 @@
                 "process",
                 "stream"
             ]
+        },
+
+        {
+            "name": "dns",
+            "prerequisites": [
+                "console",
+                "http",
+                "module",
+                "net"
+            ]
         }
     ]
 }
