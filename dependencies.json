@@ -110,6 +110,46 @@
             "prerequisites": [
                 "console"
             ]
-        }        
+        },
+
+        {
+            "name": "path",
+            "prerequisites": [
+                "module",
+                "process"
+            ]
+        },
+
+        {
+            "name": "url",
+            "prerequisites": [
+                "module"
+            ]
+        },
+
+        {
+            "name": "zlib",
+            "prerequisites": [
+                "module",
+                "fs",
+                "console",
+                "http",
+                "events",
+                "buffer"
+            ]
+        },
+
+        {
+            "name": "fs",
+            "prerequisites": [
+                "module",
+                "console",
+                "process",
+                "buffer",
+                "util",
+                "stream",
+                "events"
+            ]
+        }
     ]
 }

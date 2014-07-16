@@ -1,27 +1,17 @@
 C/C++ Addons
 Cluster
 Crypto
-Debugger
 DNS
 Domain
-Events
-File System
-Globals
 HTTP
 HTTPS
-Modules
 Net
 OS
-Path
 Punycode
 Query Strings
 Readline
-REPL
 String Decoder
-Timers
 TLS/SSL
 TTY
 UDP/Datagram
-URL
 VM
-ZLIB
