@@ -1,113 +1,39 @@
 $(function () {
     var modules = {
-      "modules": [],
-      "console": [],
-      "assert": [],
-      "querystring": [],
-      "os": [
-        "modules"
-      ],
-      "url": [
-        "modules"
-      ],
-      "path": [
-        "modules"
-      ],
-      "dns": [
-        "console"
-      ],
-      "debugger": [
-        "console"
-      ],
-      "util": [
-        "console",
-        "modules"
-      ],
-      "punycode": [
-        "console",
-        "modules"
-      ],
-      "buffer": [
-        "console",
-        "modules"
-      ],
-      "addons": [
-        "console",
-        "modules"
-      ],
-      "events": [
-        "util"
-      ],
-      "stream": [
-        "events"
-      ],
-      "timers": [
-        "modules"
-      ],
-      "stringdecoder": [
-        "buffer"
-      ],
-      "dgram": [
-        "buffer",
-        "events"
-      ],
-      "vm": [
-        "util"
-      ],
-      "process": [
-        "stream"
-      ],
-      "fs": [
-        "process"
-      ],
-      "child_process": [
-        "process"
-      ],
-      "global": [
-        "process",
-        "timers"
-      ],
-      "net": [
-        "child_process"
-      ],
-      "repl": [
-        "net"
-      ],
-      "tty": [
-        "net"
-      ],
-      "tls_(ssl)": [
-        "fs",
-        "net"
-      ],
-      "readline": [
-        "tty"
-      ],
-      "crypto": [
-        "fs"
-      ],
-      "http": [
-        "net",
-        "url"
-      ],
-      "https": [
-        "fs",
-        "http",
-        "tls_(ssl)"
-      ],
-      "cluster": [
-        "http",
-        "os"
-      ],
-      "domain": [
-        "fs",
-        "http",
-        "timers"
-      ],
-      "zlib": [
-        "fs",
-        "http"
-      ]
+        'modules': [],
+        'console': [],
+        'assert': [],
+        'querystring': [],
+        'os': ['modules'],
+        'url': ['modules'],
+        'path': ['modules'],
+        'dns': ['console'],
+        'debugger': ['console'],
+        'util': ['console', 'modules'],
+        'punycode': ['console', 'modules'],
+        'buffer': ['console', 'modules'],
+        'addons': ['console', 'modules'],
+        'events': ['util'],
+        'stream': ['events'],
+        'timers': ['modules'],
+        'stringdecoder': ['buffer'],
+        'dgram': ['buffer', 'events'],
+        'vm': ['util'],
+        'process': ['stream'],
+        'fs': ['process'],
+        'child_process': ['process'],
+        'global': ['process', 'timers'],
+        'net': ['child_process'],
+        'repl': ['net'],
+        'tty': ['net'],
+        'tls_(ssl)': ['fs', 'net'],
+        'readline': ['tty'],
+        'crypto': ['fs'],
+        'http': ['net', 'url'],
+        'https': ['fs', 'http', 'tls_(ssl)'],
+        'cluster': ['http', 'os'],
+        'domain': ['fs', 'http', 'timers'],
+        'zlib': ['fs', 'http']
     };
 
     /*
@@ -206,7 +132,7 @@ $(function () {
     });
 
     form.on('submit', function () {
-      var pass = $('[name="pass"]', this).val() === 'pass';
+      var pass = $('[name='pass']', this).val() === 'pass';
 
       if (pass) {
         finishedModules.push(module);
