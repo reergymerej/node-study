@@ -74,21 +74,49 @@ $(function () {
     domain  child_process,console,events,fs,http,modules,net,process,stream,timers,url,util
     */
 
-    var finishedModules = [];
+    
 
     var ul = $('#modules');
     var prereqDif = $('#prereqs');
     var iframe = $('iframe');
     var module;
+    var currentModule;
     var form = $('form');
     var toggle = $('#toggle');
+
+    var storage = {
+        finished: [],
+        getFinished: function () {
+            if (!this.finished.length) {
+                this.finished = localStorage.getItem('finished');
+                if (this.finished) {
+                    this.finished = JSON.parse(this.finished);
+                } else {
+                    this.finished = [];
+                }
+            }
+
+            return this.finished;
+        },
+        setFinished: function (module) {
+            this.finished.push(module);
+            localStorage.setItem('finished', JSON.stringify(this.finished));
+        },
+
+        isFinished: function (module) {
+            var finishedModules = this.getFinished();
+
+            return finishedModules.indexOf(module) > -1;
+        }
+    };
+
 
     var markFinishedModules = function () {
       $('li').each(function (i, li) {
         var module = $(li).data('module');
 
         li = $(li);
-        if (finishedModules.indexOf(module) > -1) {
+        if (storage.isFinished(module)) {
           li.addClass('finished');
         } else {
             if (!allPrereqsDone(module)) {
@@ -106,7 +134,7 @@ $(function () {
         var done = true;
 
         $.each(prereqs, function (i, prereq) {
-          if (finishedModules.indexOf(prereq) === -1) {
+          if (!storage.isFinished(prereq)) {
             done = false;
             return false;
           }
@@ -126,22 +154,27 @@ $(function () {
     markFinishedModules();
 
     ul.delegate('li', 'click', function () {
+        var li = $(this);
+        currentModule = li.data('module');
 
-        if (allPrereqsDone(module)) {
+        if (allPrereqsDone(currentModule)) {
             prereqDif.html('');
-            iframe.show().attr('src', 'http://nodejs.org/api/' + module + '.html');
+            iframe.attr('src', 'http://nodejs.org/api/' + currentModule + '.html');
             toggle.show();
             form.show();
         } else {
             form.hide();
             iframe.hide();
             toggle.hide();
-            prereqDif.html(modules[module].join(', '));
+            prereqDif.html(modules[currentModule].join(', '));
         }
+
+        $('li').removeClass('active');
+        li.addClass('active');
     });
 
     ul.delegate('li', 'mouseover', function () {
-        module = $(this).data('module');
+        // module = $(this).data('module');
     });
 
     // toggle iframe
@@ -154,7 +187,7 @@ $(function () {
         var pass = $('[name="pass"]', this).val() === 'pass';
 
         if (pass) {
-            finishedModules.push(module);
+            storage.setFinished(currentModule);
             markFinishedModules();
         }
 

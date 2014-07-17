@@ -57,3 +57,7 @@ iframe {
 .not-available {
     color: #999;
 }
+
+.active {
+    background: pink;
+}
