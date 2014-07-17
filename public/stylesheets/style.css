@@ -47,4 +47,9 @@ ul#modules li.clickable:hover {
 iframe {
     width: 100%;
     height: 800px;
+    display: none;
+}
+
+.finished {
+    text-decoration: line-through;
 }

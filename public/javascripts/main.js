@@ -148,10 +148,23 @@ $(function () {
     domain  child_process,console,events,fs,http,modules,net,process,stream,timers,url,util
     */
 
+    var finishedModules = [];
+
     var ul = $('#modules');
     var prereqDif = $('#prereqs');
     var iframe = $('iframe');
     var module;
+    var form = $('form');
+    var toggle = $('#toggle');
+
+    var markFinishedModules = function () {
+      $('li').each(function (i, li) {
+        li = $(li);
+        if (finishedModules.indexOf($(li).data('module')) > -1) {
+          li.addClass('finished');
+        }
+      });
+    };
 
     $.each(modules, function (module) {
         var li = $('<li>' + module + '</li>');
@@ -162,11 +175,44 @@ $(function () {
 
     ul.delegate('li', 'click', function () {
       var prereqs = modules[module];
-      prereqDif.html(prereqs.join(', '));
-      iframe.attr('src', 'http://nodejs.org/api/' + module + '.html');
+      var allPrereqsDone = true;
+
+      $.each(prereqs, function (i, prereq) {
+        if (finishedModules.indexOf(prereq) === -1) {
+          allPrereqsDone = false;
+          return false;
+        }
+      });
+
+      if (allPrereqsDone) {
+        prereqDif.html('');
+        iframe.show().attr('src', 'http://nodejs.org/api/' + module + '.html');
+        toggle.show();
+        form.show();
+      } else {
+        form.hide();
+        iframe.hide();
+        toggle.hide();
+        prereqDif.html(prereqs.join(', '));
+      }
     });
 
     ul.delegate('li', 'mouseover', function () {
         module = $(this).data('module');
+    });
+
+    toggle.on('click', function () {
+      iframe.toggle();
+    });
+
+    form.on('submit', function () {
+      var pass = $('[name="pass"]', this).val() === 'pass';
+
+      if (pass) {
+        finishedModules.push(module);
+        markFinishedModules();
+      }
+
+      return false;
     });
 });
