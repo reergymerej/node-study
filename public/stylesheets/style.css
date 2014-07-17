@@ -1,11 +1,42 @@
-ul#modules li:hover {
-    background-color: pink;
+body {
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.clickable {
     cursor: pointer;
 }
 
-ul#modules li {
+#content {
+    width: 100%;
+}
+
+#left, #right {
     display: inline-block;
+    vertical-align: top;
+}
+
+#left {
+    width: 200px;
+}
+
+#right {
+    width: 79%;
+}
+
+ul#modules {
+    margin: 0;
+    padding: 0;
+}
+
+ul#modules li {
     padding: 0 1em;
+}
+
+ul#modules li.clickable:hover {
+    color: #09f;
 }
 
 #prereqs {

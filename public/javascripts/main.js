@@ -1,17 +1,17 @@
 $(function () {
     var modules = {
-      "module": [],
+      "modules": [],
       "console": [],
       "assert": [],
       "querystring": [],
       "os": [
-        "module"
+        "modules"
       ],
       "url": [
-        "module"
+        "modules"
       ],
       "path": [
-        "module"
+        "modules"
       ],
       "dns": [
         "console"
@@ -21,19 +21,19 @@ $(function () {
       ],
       "util": [
         "console",
-        "module"
+        "modules"
       ],
       "punycode": [
         "console",
-        "module"
+        "modules"
       ],
       "buffer": [
         "console",
-        "module"
+        "modules"
       ],
       "addons": [
         "console",
-        "module"
+        "modules"
       ],
       "events": [
         "util"
@@ -42,7 +42,7 @@ $(function () {
         "events"
       ],
       "timers": [
-        "module"
+        "modules"
       ],
       "stringdecoder": [
         "buffer"
@@ -112,40 +112,40 @@ $(function () {
 
     /*
 
-    module  
+    modules  
     querystring 
     assert  
     console 
-    os  module
-    url module
-    path    module
+    os  modules
+    url modules
+    path    modules
     dns console
     debugger    console
-    timers  module
-    buffer  console,module
-    addons  console,module
-    util    console,module
-    punycode    console,module
-    stringdecoder   buffer,console,module
-    events  console,module,util
-    vm  console,module,util
-    stream  console,events,module,util
-    dgram   buffer,console,events,module,util
-    process console,events,module,stream,util
-    fs  console,events,module,process,stream,util
-    child_process   console,events,module,process,stream,util
-    global  console,events,module,process,stream,timers,util
-    net child_process,console,events,module,process,stream,util
-    crypto  console,events,fs,module,process,stream,util
-    repl    child_process,console,events,module,net,process,stream,util
-    tty child_process,console,events,module,net,process,stream,util
-    readline    child_process,console,events,module,net,process,stream,tty,util
-    tls_(ssl)   child_process,console,events,fs,module,net,process,stream,util
-    http    child_process,console,events,module,net,process,stream,url,util
-    cluster child_process,console,events,http,module,net,os,process,stream,url,util
-    zlib    child_process,console,events,fs,http,module,net,process,stream,url,util
-    https   child_process,console,events,fs,http,module,net,process,stream,tls_(ssl),url,util
-    domain  child_process,console,events,fs,http,module,net,process,stream,timers,url,util
+    timers  modules
+    buffer  console,modules
+    addons  console,modules
+    util    console,modules
+    punycode    console,modules
+    stringdecoder   buffer,console,modules
+    events  console,modules,util
+    vm  console,modules,util
+    stream  console,events,modules,util
+    dgram   buffer,console,events,modules,util
+    process console,events,modules,stream,util
+    fs  console,events,modules,process,stream,util
+    child_process   console,events,modules,process,stream,util
+    global  console,events,modules,process,stream,timers,util
+    net child_process,console,events,modules,process,stream,util
+    crypto  console,events,fs,modules,process,stream,util
+    repl    child_process,console,events,modules,net,process,stream,util
+    tty child_process,console,events,modules,net,process,stream,util
+    readline    child_process,console,events,modules,net,process,stream,tty,util
+    tls_(ssl)   child_process,console,events,fs,modules,net,process,stream,util
+    http    child_process,console,events,modules,net,process,stream,url,util
+    cluster child_process,console,events,http,modules,net,os,process,stream,url,util
+    zlib    child_process,console,events,fs,http,modules,net,process,stream,url,util
+    https   child_process,console,events,fs,http,modules,net,process,stream,tls_(ssl),url,util
+    domain  child_process,console,events,fs,http,modules,net,process,stream,timers,url,util
     */
 
     var ul = $('#modules');
@@ -155,8 +155,8 @@ $(function () {
 
     $.each(modules, function (module) {
         var li = $('<li>' + module + '</li>');
+        li.addClass('clickable');
         li.data('module', module);
-
         ul.append(li);
     });
 
