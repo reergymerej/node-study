@@ -92,53 +92,64 @@ $(function () {
       });
     };
 
+    var allPrereqsDone = function (module) {
+        var prereqs = modules[module];
+        var done = true;
+
+        $.each(prereqs, function (i, prereq) {
+          if (finishedModules.indexOf(prereq) === -1) {
+            done = false;
+            return false;
+          }
+        });
+
+        return done;
+    };
+
+    // create the clickable item for each module
     $.each(modules, function (module) {
         var li = $('<li>' + module + '</li>');
         li.addClass('clickable');
+        if (!allPrereqsDone(module)) {
+            li.addClass('not-available');
+        }
         li.data('module', module);
         ul.append(li);
     });
 
     ul.delegate('li', 'click', function () {
-      var prereqs = modules[module];
-      var allPrereqsDone = true;
 
-      $.each(prereqs, function (i, prereq) {
-        if (finishedModules.indexOf(prereq) === -1) {
-          allPrereqsDone = false;
-          return false;
+        if (allPrereqsDone(module)) {
+            prereqDif.html('');
+            iframe.show().attr('src', 'http://nodejs.org/api/' + module + '.html');
+            toggle.show();
+            form.show();
+        } else {
+            form.hide();
+            iframe.hide();
+            toggle.hide();
+            prereqDif.html(modules[module].join(', '));
         }
-      });
-
-      if (allPrereqsDone) {
-        prereqDif.html('');
-        iframe.show().attr('src', 'http://nodejs.org/api/' + module + '.html');
-        toggle.show();
-        form.show();
-      } else {
-        form.hide();
-        iframe.hide();
-        toggle.hide();
-        prereqDif.html(prereqs.join(', '));
-      }
     });
 
     ul.delegate('li', 'mouseover', function () {
         module = $(this).data('module');
     });
 
+    // toggle iframe
     toggle.on('click', function () {
-      iframe.toggle();
+        iframe.toggle();
     });
 
+    // handle form submission
     form.on('submit', function () {
-      var pass = $('[name='pass']', this).val() === 'pass';
+        var pass = $('[name="pass"]', this).val() === 'pass';
 
-      if (pass) {
-        finishedModules.push(module);
-        markFinishedModules();
-      }
+        if (pass) {
+            finishedModules.push(module);
+            markFinishedModules();
+        }
 
-      return false;
+        return false;
     });
 });

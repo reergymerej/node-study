@@ -53,3 +53,7 @@ iframe {
 .finished {
     text-decoration: line-through;
 }
+
+.not-available {
+    color: #999;
+}
