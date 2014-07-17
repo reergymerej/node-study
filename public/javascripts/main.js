@@ -85,10 +85,19 @@ $(function () {
 
     var markFinishedModules = function () {
       $('li').each(function (i, li) {
+        var module = $(li).data('module');
+
         li = $(li);
-        if (finishedModules.indexOf($(li).data('module')) > -1) {
+        if (finishedModules.indexOf(module) > -1) {
           li.addClass('finished');
+        } else {
+            if (!allPrereqsDone(module)) {
+                li.addClass('not-available');
+            } else {
+                li.removeClass('not-available');
+            }
         }
+
       });
     };
 
@@ -110,12 +119,11 @@ $(function () {
     $.each(modules, function (module) {
         var li = $('<li>' + module + '</li>');
         li.addClass('clickable');
-        if (!allPrereqsDone(module)) {
-            li.addClass('not-available');
-        }
         li.data('module', module);
         ul.append(li);
     });
+
+    markFinishedModules();
 
     ul.delegate('li', 'click', function () {
 
