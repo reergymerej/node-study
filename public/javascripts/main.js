@@ -37,11 +37,12 @@ $(function () {
         };
 
         var loadTest = function (module) {
-            var testQuestions = tests.getTest(module);
-            questions.empty();
+            tests.getTest(module, function (testQuestions) {
+                questions.empty();
 
-            $.each(testQuestions, function (i, q) {
-                questions.append(q);
+                $.each(testQuestions, function (i, q) {
+                    questions.append(q);
+                });
             });
         };
 
@@ -63,6 +64,7 @@ $(function () {
                 prereqList.html('');
                 iframe.attr('src', 'http://nodejs.org/api/' + currentModule + '.html');
                 toggle.show();
+                form.empty();
                 form.show();
                 loadTest(currentModule);
             } else {

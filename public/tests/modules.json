@@ -1,0 +1,28 @@
+{
+  "questions": [
+    {
+      "text": "Would you like to pass or fail?",
+      "answers": [
+        {
+          "text": "pass",
+          "correct": true
+        },
+        {
+          "text": "fail"
+        }
+      ]
+    },
+    {
+      "text": "select green",
+      "answers": [
+        {
+          "text": "blue"
+        },
+        {
+          "text": "green",
+          "correct": true
+        }
+      ]
+    }
+  ]
+}

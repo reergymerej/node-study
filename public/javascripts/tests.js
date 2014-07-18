@@ -1,36 +1,28 @@
 // used for module tests
+/* global define */
 define(['storage'], function (storage) {
 
-    var getQuestions = function (module) {
-        return [
-            {
-                text: 'Would you like to pass or fail?',
-                answers: [
-                    {
-                        text: 'pass',
-                        correct: true
-                    },
+    var testCache = {};
 
-                    {
-                        text: 'fail'
-                    }
-                ]
-            },
+    var getQuestions = function (module, callback) {
 
-            {
-                text: 'select green',
-                answers: [
-                    {
-                        text: 'blue'
-                    },
+        if (testCache[module]) {
+            callback(testCache[module]);
+        } else {
 
-                    {
-                        text: 'green',
-                        correct: true
-                    }
-                ]
-            }
-        ];
+            $.ajax({
+                dataType: 'json',
+                url: 'tests/' + module + '.json',
+                // url: 'tests/' + 'foo' + '.json',
+                success: function (resp) {
+                    testCache[module] = resp.questions;
+                    callback(testCache[module]);
+                },
+                error: function (resp) {
+                    console.error('unable to load test');
+                }
+            });
+        }
     };
 
     var getComponents = function (questions) {
@@ -61,9 +53,10 @@ define(['storage'], function (storage) {
     };
 
     return {
-        getTest: function (module) {
-            var questions = getQuestions(module);
-            return getComponents(questions);
+        getTest: function (module, callback) {
+            getQuestions(module, function (questions) {
+                callback(getComponents(questions));
+            });
         }
     };
 });
