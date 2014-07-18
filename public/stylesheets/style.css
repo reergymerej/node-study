@@ -19,7 +19,7 @@ body {
 }
 
 #left {
-    width: 200px;
+    width: 20%;
 }
 
 #right {
@@ -60,15 +60,6 @@ iframe {
 
 .active {
     background: pink;
-}
-
-.question {
-    margin: 1em 0;
-}
-
-label {
-    margin-bottom: .5em;
-    display: block;
 }
 
 .wrong {

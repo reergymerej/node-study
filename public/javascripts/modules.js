@@ -1,4 +1,5 @@
 // the modules, of course
+/* global define */
 define(['storage'], function (storage) {
 
     var modules = {
@@ -64,6 +65,10 @@ define(['storage'], function (storage) {
         },
         isFinished: function (module) {
             return storage.isFinished.apply(storage, [module]);
+        },
+
+        clearHistory: function (callback) {
+            storage.clearHistory.apply(storage, [callback]);
         }
     };
 });

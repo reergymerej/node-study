@@ -1,3 +1,5 @@
+/* global requirejs, require */
+
 $(function () {
 
     requirejs.config({
@@ -23,6 +25,7 @@ $(function () {
             if (modules.isFinished(module)) {
                 li.addClass('finished');
             } else {
+                li.removeClass('finished');
                 if (!modules.allPrereqsDone(module)) {
                     li.addClass('not-available');
                 } else {
@@ -78,6 +81,12 @@ $(function () {
             iframe.toggle();
         });
 
+        $('#clear').on('click', function () {
+            modules.clearHistory(function () {
+                markFinishedModules();
+            });
+        });
+
         // handle form submission
         form.on('submit', function () {
 
@@ -86,29 +95,33 @@ $(function () {
             // get the selected values
             var answers = form.serializeArray();
 
-            // for each, find the element
-            $.each(answers, function (i, answer) {
-                var selectedAnswer = $('input[name="' + answer.name +
-                    '"][value="' + answer.value + '"]');
+            var questions = $('.question');
+            questions.removeClass('wrong');
 
-                var isCorrect = false;
-                
-                if (selectedAnswer.length) {
-                    isCorrect = !!(selectedAnswer && selectedAnswer.attr('correct'));
+            if (questions.length !== answers.length) {
+                pass = false;
+            } else {
+                // for each, find the element
+                $.each(answers, function (i, answer) {
+                    var selectedAnswer = $('input[name="' + answer.name +
+                        '"][value="' + answer.value + '"]');
+
+                    var isCorrect = false;
+                    
+                    if (selectedAnswer.length) {
+                        isCorrect = !!(selectedAnswer && selectedAnswer.attr('correct'));
+                    }
+
+                    if (!isCorrect) {
+                        pass = false;
+                        selectedAnswer.closest('.question').addClass('wrong');
+                    }
+                });
+
+                if (pass) {
+                    modules.setFinished(currentModule);
+                    markFinishedModules();
                 }
-
-                if (!isCorrect) {
-                    pass = false;
-                    selectedAnswer.closest('.question').addClass('wrong');
-                }
-            });
-
-            // if it is not correct, failed test
-
-
-            if (pass) {
-                modules.setFinished(currentModule);
-                markFinishedModules();
             }
 
             return false;
