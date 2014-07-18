@@ -80,7 +80,31 @@ $(function () {
 
         // handle form submission
         form.on('submit', function () {
-            var pass = $('[name="pass"]', this).val() === 'pass';
+
+            var pass = true;
+
+            // get the selected values
+            var answers = form.serializeArray();
+
+            // for each, find the element
+            $.each(answers, function (i, answer) {
+                var selectedAnswer = $('input[name="' + answer.name +
+                    '"][value="' + answer.value + '"]');
+
+                var isCorrect = false;
+                
+                if (selectedAnswer.length) {
+                    isCorrect = !!(selectedAnswer && selectedAnswer.attr('correct'));
+                }
+
+                if (!isCorrect) {
+                    pass = false;
+                    selectedAnswer.closest('.question').addClass('wrong');
+                }
+            });
+
+            // if it is not correct, failed test
+
 
             if (pass) {
                 modules.setFinished(currentModule);

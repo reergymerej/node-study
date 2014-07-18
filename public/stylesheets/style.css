@@ -61,3 +61,16 @@ iframe {
 .active {
     background: pink;
 }
+
+.question {
+    margin: 1em 0;
+}
+
+label {
+    margin-bottom: .5em;
+    display: block;
+}
+
+.wrong {
+    border: 1px dashed red;
+}

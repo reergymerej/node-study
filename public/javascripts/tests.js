@@ -2,8 +2,6 @@
 define(['storage'], function (storage) {
 
     var getQuestions = function (module) {
-        console.log('here is the test for ' + module);
-
         return [
             {
                 text: 'Would you like to pass or fail?',
@@ -17,6 +15,20 @@ define(['storage'], function (storage) {
                         text: 'fail'
                     }
                 ]
+            },
+
+            {
+                text: 'select green',
+                answers: [
+                    {
+                        text: 'blue'
+                    },
+
+                    {
+                        text: 'green',
+                        correct: true
+                    }
+                ]
             }
         ];
     };
@@ -24,20 +36,26 @@ define(['storage'], function (storage) {
     var getComponents = function (questions) {
         var comps = [];
         $.each(questions, function (i, q) {
-            var div = $('<div>');
-            div.append('<label>').html(q.text);
+            var questionDiv = $('<div>', {
+                class: 'question'
+            });
+            questionDiv.append($('<label>').html(q.text));
 
             $.each(q.answers, function (j, a) {
+                var div = $('<div>');
                 div.append(
                     $('<input>', {
                         type: 'radio',
                         name: i,
-                        value: a.text
+                        value: a.text,
+                        correct: a.correct
                     }),
                     a.text
                 );
+
+                questionDiv.append(div);
             });
-            comps.push(div);
+            comps.push(questionDiv);
         });
         return comps;
     };
