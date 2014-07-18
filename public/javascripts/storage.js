@@ -35,6 +35,17 @@ define(function () {
             finished = [];
             save();
             callback();
+        },
+
+        toggleFinished: function (module, callback) {
+            if (this.isFinished(module)) {
+                finished.splice(finished.indexOf(module), 1);
+                save();
+                callback();
+            } else {
+                this.setFinished(module);
+                callback();
+            }
         }
     };
 });

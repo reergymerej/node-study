@@ -142,5 +142,11 @@ $(function () {
 
             return false;
         });
+
+        $('#finished').on('click', function () {
+            modules.toggleFinished(currentModule, function () {
+                markFinishedModules();
+            });
+        });
     });
 });

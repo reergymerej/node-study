@@ -66,6 +66,9 @@ define(['storage'], function (storage) {
         isFinished: function (module) {
             return storage.isFinished.apply(storage, [module]);
         },
+        toggleFinished: function (module, callback) {
+            return storage.toggleFinished.apply(storage, [module, callback]);
+        },
 
         clearHistory: function (callback) {
             storage.clearHistory.apply(storage, [callback]);
