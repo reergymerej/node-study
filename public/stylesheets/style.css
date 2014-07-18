@@ -3,7 +3,9 @@ body {
     margin: 0;
 }
 
-
+#messageContainer {
+    height: 50px;
+}
 
 .clickable {
     cursor: pointer;

@@ -16,6 +16,16 @@ $(function () {
         var form = $('form');
         var toggle = $('#toggle');
         var questions = $('#questions');
+        var message = $('#message');
+        var lastMessageTimeout;
+
+        var showMessage = function (msg) {
+            message.html(msg).slideDown();
+            clearTimeout(lastMessageTimeout);
+            lastMessageTimeout = setTimeout(function () {
+                message.slideUp();
+            }, 5000);
+        };
 
         var markFinishedModules = function () {
           $('li').each(function (i, li) {
@@ -32,17 +42,21 @@ $(function () {
                     li.removeClass('not-available');
                 }
             }
-
           });
         };
 
         var loadTest = function (module) {
             tests.getTest(module, function (testQuestions) {
-                questions.empty();
 
-                $.each(testQuestions, function (i, q) {
-                    questions.append(q);
-                });
+                if (!testQuestions.length) {
+                    showMessage('unable to load test ' + module);
+                } else {
+                    questions.empty();
+                    $.each(testQuestions, function (i, q) {
+                        questions.append(q);
+                    });
+                    // form.append(questions);
+                }
             });
         };
 
@@ -64,7 +78,7 @@ $(function () {
                 prereqList.html('');
                 iframe.attr('src', 'http://nodejs.org/api/' + currentModule + '.html');
                 toggle.show();
-                form.empty();
+                questions.empty();
                 form.show();
                 loadTest(currentModule);
             } else {

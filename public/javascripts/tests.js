@@ -19,7 +19,7 @@ define(['storage'], function (storage) {
                     callback(testCache[module]);
                 },
                 error: function (resp) {
-                    console.error('unable to load test');
+                    callback([]);
                 }
             });
         }
