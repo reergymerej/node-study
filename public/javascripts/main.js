@@ -1,19 +1,19 @@
 $(function () {
 
     requirejs.config({
-        // urlArgs: 'bust=' + Date.now()
+        urlArgs: 'bust=' + Date.now()
     });
 
-    require(['modules'], function (modules) {
+    require(['modules', 'tests'], function (modules, tests) {
         
 
         var ul = $('#modules');
-        var prereqDif = $('#prereqs');
+        var prereqList = $('#prereqs');
         var iframe = $('iframe');
         var currentModule;
         var form = $('form');
         var toggle = $('#toggle');
-
+        var questions = $('#questions');
 
         var markFinishedModules = function () {
           $('li').each(function (i, li) {
@@ -21,7 +21,7 @@ $(function () {
 
             li = $(li);
             if (modules.isFinished(module)) {
-              li.addClass('finished');
+                li.addClass('finished');
             } else {
                 if (!modules.allPrereqsDone(module)) {
                     li.addClass('not-available');
@@ -31,6 +31,15 @@ $(function () {
             }
 
           });
+        };
+
+        var loadTest = function (module) {
+            var testQuestions = tests.getTest(module);
+            questions.empty();
+
+            $.each(testQuestions, function (i, q) {
+                questions.append(q);
+            });
         };
 
         // create the clickable item for each module
@@ -48,15 +57,16 @@ $(function () {
             currentModule = li.data('module');
 
             if (modules.allPrereqsDone(currentModule)) {
-                prereqDif.html('');
+                prereqList.html('');
                 iframe.attr('src', 'http://nodejs.org/api/' + currentModule + '.html');
                 toggle.show();
                 form.show();
+                loadTest(currentModule);
             } else {
                 form.hide();
                 iframe.hide();
                 toggle.hide();
-                prereqDif.html(modules.getPrereqs(currentModule).join(', '));
+                prereqList.html(modules.getPrereqs(currentModule).join(', '));
             }
 
             $('li').removeClass('active');
