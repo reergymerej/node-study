@@ -3,10 +3,15 @@
 $(function () {
 
     requirejs.config({
-        urlArgs: 'bust=' + Date.now()
+        urlArgs: 'bust=' + Date.now()/*,
+        d3: 'http://d3js.org/d3.v3.min'*/
     });
 
-    require(['modules', 'tests'], function (modules, tests) {
+    require(['modules', 'tests'/*, 'd3'*/], function (modules, tests) {
+
+
+
+        // return;
         
 
         var ul = $('#modules');
