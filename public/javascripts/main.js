@@ -9,11 +9,6 @@ $(function () {
 
     require(['modules', 'tests'/*, 'd3'*/], function (modules, tests) {
 
-
-
-        // return;
-        
-
         var ul = $('#modules');
         var prereqList = $('#prereqs');
         var iframe = $('iframe');
@@ -23,6 +18,7 @@ $(function () {
         var questions = $('#questions');
         var message = $('#message');
         var lastMessageTimeout;
+        var link = $('#link');
 
         var showMessage = function (msg) {
             message.html(msg).slideDown();
@@ -77,11 +73,14 @@ $(function () {
 
         ul.delegate('li', 'click', function () {
             var li = $(this);
+            var url;
             currentModule = li.data('module');
+            url = 'http://nodejs.org/api/' + currentModule + '.html';
 
+            link.attr('href', url).html(currentModule);
             if (modules.allPrereqsDone(currentModule)) {
                 prereqList.html('');
-                iframe.attr('src', 'http://nodejs.org/api/' + currentModule + '.html');
+                iframe.attr('src', url);
                 toggle.show();
                 questions.empty();
                 form.show();
