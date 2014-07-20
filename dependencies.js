@@ -134,13 +134,32 @@ var studyPath = [];
 
 Object.keys(modules).forEach(function (module) {
     studyPath.push({
+        // name of this module
         name: module,
-        prereqs: getRecursivePrereqs(module)
+
+        // modules that must be learned first to understand this one
+        before: getRecursivePrereqs(module).sort(),
+
+        // modules that depend on this one
+        after: []
     });
 });
 
 studyPath.sort(function (a, b) {
-    return a.prereqs.length - b.prereqs.length;
-}).forEach(function (module) {
-    console.log('%s\t%s', module.name, module.prereqs);
+    return a.before.length - b.before.length;
 });
+
+
+studyPath.forEach(function (module) {
+  var after = [];
+  studyPath.forEach(function (m) {
+    if (m.before.indexOf(module.name) > -1) {
+      after.push(m.name);
+    }
+  });
+  module.after = after.sort();
+});
+
+console.log(studyPath);
+
+
