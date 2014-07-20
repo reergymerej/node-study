@@ -9,4 +9,6 @@ var foo = require('./foo');
 // console.log(require.resolve('./foo'));
 
 // console.log(module.children);
-console.log(require.main.filename);
+// console.log(require.main.filename);
+
+console.log(module.children);
