@@ -359,10 +359,10 @@ util    (after: 19)
 stringdecoder   (after: 0)
 events  (after: 17)
 vm  (after: 0)
-stream  (after: 15)
-dgram   (after: 0)
+stream  (after: 15) Just do the first part.  The API for Stream Implementors can wait until you need to write your own.
+dgram   (after: 0)  Nothing depends on this, so wait until you need it.
 process (after: 14)
-fs  (after: 5)
+fs  (after: 5) ======================================= resume here
 child_process   (after: 10)
 global  (after: 0)
 net (after: 9)
