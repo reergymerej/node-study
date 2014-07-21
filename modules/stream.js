@@ -122,29 +122,60 @@ var interval;
 
 // flowing
 // =======================================
-var flowing = new Counter();
+// var flowing = new Counter();
 
-flowing.setEncoding('ascii');
-flowing
-    .once('readable', function () {
-        util.log('flowing stream now readable');
-    })
-    .on('data', function (chunk) {
-        var that = this;
-        console.log('read', chunk);
+// flowing.setEncoding('ascii');
+// flowing
+//     .once('readable', function () {
+//         util.log('flowing stream now readable');
+//     })
+//     .on('data', function (chunk) {
+//         var that = this;
+//         console.log('read', chunk);
 
-        if (chunk === '70') {
-            this.unshift('Hey, look.  We\'re almost done!\n');
+//         if (chunk === '70') {
+//             this.unshift('Hey, look.  We\'re almost done!\n');
 
-            // Stop the data events, but the readable stream will keep getting data.
-            this.pause();
-            setTimeout(function () {
-                util.log('resuming the flow');
-                // Once we resume, the readable buffer has a bunch of stuff in it.
-                that.resume();
-            }, 200);
-        }
-    })
-    .once('end', function () {
-        util.log('done reading flowing stream');
-    });
+//             // Stop the data events, but the readable stream will keep getting data.
+//             this.pause();
+//             setTimeout(function () {
+//                 util.log('resuming the flow');
+//                 // Once we resume, the readable buffer has a bunch of stuff in it.
+//                 that.resume();
+//             }, 200);
+//         }
+//     })
+//     .once('end', function () {
+//         util.log('done reading flowing stream');
+//     });
+
+// a writable stream
+var Writable = stream.Writable;
+
+var MyWritable = function (config) {
+    Writable.call(this, config);
+    this.data = [];
+};
+
+// extend the base before adding prototypes or they will be overwritten
+util.inherits(MyWritable, Writable);
+
+MyWritable.prototype._write = function (chunk, encoding, callback) {
+    console.log('_write was called', arguments);
+    this.data.push(chunk);
+    callback();
+};
+
+
+var writable = new MyWritable();
+
+writable.on('drain', function () {
+    console.log('writable is drained');
+}).once('finish', function () {
+    console.log('writable is done');
+});
+
+writable.write('some chunk', function () {
+    console.log('done writing');
+    writable.end();
+});
