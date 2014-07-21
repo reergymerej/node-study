@@ -339,3 +339,41 @@ var modulesWithDependencies = [
 modulesWithDependencies.forEach(function (module) {
   console.log('%s\t(after: %d)', module.name, module.after.length);
 });
+
+
+/*
+module  (after: 28)
+querystring (after: 0)
+assert  (after: 0)
+console (after: 26)
+os  (after: 1)
+url (after: 5)
+path    (after: 0)
+dns (after: 0)
+debugger    (after: 0)
+timers  (after: 2)
+buffer  (after: 2)
+addons  (after: 0)
+util    (after: 19)
+punycode    (after: 0)
+stringdecoder   (after: 0)
+events  (after: 17)
+vm  (after: 0)
+stream  (after: 15)
+dgram   (after: 0)
+process (after: 14)
+fs  (after: 5)
+child_process   (after: 10)
+global  (after: 0)
+net (after: 9)
+crypto  (after: 0)
+repl    (after: 0)
+tty (after: 1)
+readline    (after: 0)
+tls_(ssl)   (after: 1)
+http    (after: 4)
+cluster (after: 0)
+zlib    (after: 0)
+https   (after: 0)
+domain  (after: 0)
+*/
