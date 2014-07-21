@@ -353,9 +353,9 @@ dns (after: 0)
 debugger    (after: 0)
 timers  (after: 2)
 buffer  (after: 2)
-addons  (after: 0)
+  addons  (after: 0)  Wait until you're bored with Node and want to write C++ to do this one.
 util    (after: 19)
-punycode    (after: 0)
+  punycode    (after: 0)  Wait until you need it to learn this one.
 stringdecoder   (after: 0)
 events  (after: 17)
 vm  (after: 0)
