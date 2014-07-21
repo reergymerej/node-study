@@ -99,17 +99,52 @@ Counter.prototype._read = function () {
 };
 
 
-var counter = new Counter();
-
-var read = '';
 // non-flowing
-counter.setEncoding('ascii');
-counter.on('readable', function () {
-    console.log('the stream is readable');
-    var readData = this.read(1);
-    while (readData !== null) {
-        read += readData;
-    }
+// =======================================
+var counter = new Counter();
+var interval;
 
-    console.log(read);
-});
+// counter.setEncoding('ascii');
+// counter.on('readable', function () {
+//     console.log('the stream is now readable');
+    
+//     // start reading
+//     interval = setInterval(function () {
+//         var readData = counter.read(1);
+//         if (readData !== null) {
+//             console.log('read some more data', readData);
+//         }
+//     }, 30);
+// }).once('end', function () {
+//     console.log('done reading stream');
+//     clearInterval(interval);
+// });
+
+// flowing
+// =======================================
+var flowing = new Counter();
+
+flowing.setEncoding('ascii');
+flowing
+    .once('readable', function () {
+        util.log('flowing stream now readable');
+    })
+    .on('data', function (chunk) {
+        var that = this;
+        console.log('read', chunk);
+
+        if (chunk === '70') {
+            this.unshift('Hey, look.  We\'re almost done!\n');
+
+            // Stop the data events, but the readable stream will keep getting data.
+            this.pause();
+            setTimeout(function () {
+                util.log('resuming the flow');
+                // Once we resume, the readable buffer has a bunch of stuff in it.
+                that.resume();
+            }, 200);
+        }
+    })
+    .once('end', function () {
+        util.log('done reading flowing stream');
+    });
