@@ -15,18 +15,18 @@ link - rewrites an existing file to reference another file (links them).  These 
 lstat - like stat, but doesn't follow links
 mkdir - makes a directory
 open - opens (and may create) a file, returns file descriptor
-read
-readdir
-readFile
-readlink
-realpath
-rename
-rmdir
-stat
-symlink
-truncate
-unlink
-unwatchFile
+read - reads a file's contents into a buffer, uses file descriptor
+readdir - get an array of file names in dir, excluding . and ..
+readFile - reads a file's contents, much easier than read
+readlink - reads a symbolic link's value
+realpath - returns an absolute pathname, may use process.cwd()
+rename - renames a file/directory
+rmdir - remove directory
+stat - get a fs.Stats for a path
+symlink - create a symbolic link to a file
+truncate - truncates a file
+unlink - deletes a file 
+unwatchFile - unstable, use watch
 utimes
 watch
 watchFile
