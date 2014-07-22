@@ -199,6 +199,37 @@ var makeDirectory = function (cb) {
 
 // symlink =======================================
 // fs.symlink(dir + 'a.symlink', dir + 'a.txt', function (err) {
-fs.symlink(dir + 'a.txt', dir + 'a.symlink', function (err) {
-    console.log(arguments);
+// fs.symlink(dir + 'a.txt', dir + 'a.symlink', function (err) {
+//     console.log(arguments);
+// });
+
+// watch =======================================
+var watchedFilename = dir + 'watch.me';
+
+var watch = fs.watch(watchedFilename, function (event, filename) {
+    if (event === 'change') {
+        console.log(filename);
+    }
 });
+
+console.log(watch);
+
+setTimeout(function () {
+    console.log('unwatching');
+    watch.close();
+    fs.unwatchFile(watchedFilename);
+}, 5000);
+
+// var readable = fs.createReadStream(dir + 'a.txt', {
+//     encoding: 'utf8'
+// });
+
+// readable.on('open', function () {
+//     console.log('opened');
+// }).on('readable', function () {
+//     console.log('hey, it is readable now');
+// }).on('data', function (chunk) {
+//     console.log(chunk);
+// }).on('end', function () {
+//     console.log('done reading');
+// });

@@ -27,12 +27,11 @@ symlink - create a symbolic link to a file
 truncate - truncates a file
 unlink - deletes a file 
 unwatchFile - unstable, use watch
-utimes
-watch
-watchFile
-write
+utimes - change accessed/modified times
+watch - watch for changes (unstable)
+watchFile - watch for changes (unstable)
+write - 
 writeFile
-writeSync
 
 createReadStream
 createWriteStream
