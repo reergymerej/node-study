@@ -363,9 +363,9 @@ stream  (after: 15) Just do the first part.  The API for Stream Implementors can
 dgram   (after: 0)  Nothing depends on this, so wait until you need it.
 process (after: 14)
 fs  (after: 5)
-=======================================
 child_process   (after: 10) 
 global  (after: 0)
+=======================================
 net (after: 9)
 crypto  (after: 0)
 repl    (after: 0)
