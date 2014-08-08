@@ -26,6 +26,10 @@ var onListening = function () {
 var onConnection = function (socket) {
     var data = '';
 
+    parseHeader(socket, function (err, header, stream) {
+        console.log('found header', header, stream);
+    });
+
     var onData = function (buffer) {
         data += buffer.toString();
     };
@@ -44,3 +48,46 @@ server.on('connection', onConnection);
 server.on('listening', onListening);
 
 server.listen(port, host);
+
+// Pull off a header delimited by \n\n
+// use unshift() if we get too much
+// Call the callback with (error, header, stream)
+var parseHeader = function (stream, callback) {
+    var StringDecoder = require('string_decoder').StringDecoder;
+
+    var decoder = new StringDecoder('utf8');
+    var header = '';
+
+    var onReadable = function () {
+        var chunk;
+        var str;
+        var split;
+        var remaining;
+        var buf;
+        console.log('hey, it is readable!');
+
+        while (null !== (chunk = stream.read())) {
+            str = decoder.write(chunk);
+            if (str.match(/\n\n/)) {
+                // found the header boundary
+                split = str.split(/\n\n/);
+                header += split.shift();
+                remaining = split.join('\n\n');
+                buf = new Buffer(remaining, 'utf8');
+                if (buf.length) {
+                    stream.unshift(buf);
+                }
+                stream.removeListener('error', callback);
+                stream.removeListener('readable', onReadable);
+                // now the body of the message can be read from the stream.
+                callback(null, header, stream);
+            } else {
+                // still reading the header.
+                header += str;
+            }
+        }
+    };
+
+    stream.on('error', callback);
+    stream.on('readable', onReadable);
+};

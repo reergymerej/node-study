@@ -1,3 +1,5 @@
+/* jshint node: true */
+
 var express = require('express');
 var http = require('http');
 var path = require('path');
@@ -8,6 +10,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes');
 var users = require('./routes/user');
+var netRoutes = require('./routes/net');
 
 var app = express();
 
@@ -25,6 +28,7 @@ app.use(app.router);
 
 app.get('/', routes.index);
 app.get('/users', users.list);
+app.get('/net', netRoutes.net);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
